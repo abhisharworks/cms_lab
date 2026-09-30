@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<article class="article-page"><a class="back-link" href="{{ url_for('list_posts') }}">← <span>All stories</span></a><header class="article-header"><p class="eyebrow"><span class="eyebrow-line"></span> A story from the journal</p><h1>{{ post.title }}</h1><p class="article-meta">By <span>{{ post.author }}</span><span class="meta-dot">·</span>{{ post.createdAt.strftime('%d %B %Y') if post.createdAt else 'Date unavailable' }}</p></header><div class="article-rule"><span>✳</span></div><div class="article-content">{{ post.content }}</div><div class="article-end"><span>✳</span><p>Thanks for reading.</p></div><a class="text-link article-back" href="{{ url_for('list_posts') }}">← Back to all stories</a></article>
+{% endblock %}

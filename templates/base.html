@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <title>{% block title %}Simple CMS{% endblock %} · Simple CMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('list_posts') }}" aria-label="Simple CMS home"><span class="brand-mark">s.</span><span>the daily<span class="brand-accent">note</span></span></a>
+    <nav aria-label="Main navigation"><a class="nav-link" href="{{ url_for('list_posts') }}">Stories</a><a class="button button-small" href="{{ url_for('new_post') }}"><span aria-hidden="true">＋</span> Write a story</a></nav>
+  </header>
+  <main>{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flash-stack">{% for category, message in messages %}<p class="flash flash-{{ category }}" role="status">{{ message }}</p>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
+  <footer class="site-footer"><span>Thoughts worth keeping.</span><span>Simple CMS <span aria-hidden="true">·</span> Made for writers</span></footer>
+</body>
+</html>

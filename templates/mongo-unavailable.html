@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Database unavailable{% endblock %}
+{% block content %}
+<section class="empty-state database-state"><span class="empty-icon" aria-hidden="true">*</span><p class="eyebrow">A quick connection check</p><h3>MongoDB is not responding.</h3><p>Simple CMS is ready, but it cannot reach MongoDB at <code>127.0.0.1:27017</code>. Start the MongoDB server, then refresh this page.</p><a class="button" href="{{ url_for('list_posts') }}">Try again</a></section>
+{% endblock %}

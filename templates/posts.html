@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Stories{% endblock %}
+{% block content %}
+<section class="hero"><div class="eyebrow"><span class="eyebrow-line"></span> A little corner of the internet</div><h1>Ideas, in their<br><em>own words.</em></h1><p class="hero-copy">Notes, stories, and things worth sharing.<br>Written by people, read at your own pace.</p><a class="button hero-button" href="{{ url_for('new_post') }}">Write your first story <span aria-hidden="true">↗</span></a><span class="hero-ornament" aria-hidden="true">✳</span></section>
+<section class="stories" aria-labelledby="stories-heading"><div class="section-heading"><div><p class="eyebrow">From the journal</p><h2 id="stories-heading">Recent stories</h2></div><span class="story-count">{{ '%02d'|format(posts|length) }} <span>stories</span></span></div>
+  {% if posts %}<div class="story-list">{% for post in posts %}<article class="story-row"><span class="story-index">{{ '%02d'|format(loop.index) }}</span><div class="story-main"><h3><a href="{{ url_for('show_post', post_id=post._id) }}">{{ post.title }}</a></h3><p class="story-meta">By <span>{{ post.author }}</span><span class="meta-dot">·</span>{{ post.createdAt.strftime('%d %B %Y') if post.createdAt else 'Date unavailable' }}</p></div><a class="story-arrow" href="{{ url_for('show_post', post_id=post._id) }}" aria-label="Read {{ post.title }}">↗</a></article>{% endfor %}</div>
+  {% else %}<div class="empty-state"><span class="empty-icon" aria-hidden="true">✳</span><h3>The page is yours to fill.</h3><p>There are no stories just yet. Start with the first one.</p><a class="text-link" href="{{ url_for('new_post') }}">Create a story <span aria-hidden="true">→</span></a></div>{% endif %}
+</section>
+{% endblock %}
